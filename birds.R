@@ -1,9 +1,15 @@
-# Load packages
+#----Load packages----
+library(magrittr)
 library(dplyr)
 library(readr)
+library(ggplot2)
+
+#----Read data----
 
 # Read in bird checklist
 birds <- read_csv("https://raw.githubusercontent.com/KateMMiller/IMD_R_Training_Advanced/main/data/birds.csv")
+
+#----Exploratory data analysis----
 
 # Preview dataset
 birds
@@ -31,3 +37,12 @@ group_size
 
 # What are the smallest species groups?
 tail(group_size)
+
+#----Group size histogram----
+group_size %>%
+  ggplot(aes(x = species_count)) +
+  geom_histogram() +
+  ggtitle("Distribution of species group size") +
+  xlab("Number of species") +
+  ylab("Frequency")
+
